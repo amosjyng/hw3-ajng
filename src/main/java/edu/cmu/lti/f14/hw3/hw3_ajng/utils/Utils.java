@@ -77,7 +77,9 @@ public class Utils {
 		return list;
 	}
 
-	
+	/**
+	 * Turn a list of tokens representing a sentence into a vector of words
+	 */
 	public static Map<String, Integer> tokenListToVector(List<Token> tokens) {
 	  Map<String, Integer> vector = new HashMap<String, Integer>();
 	  for (Token token : tokens) {
@@ -85,4 +87,15 @@ public class Utils {
 	  }
 	  return vector;
 	}
+	
+  /**
+   * Return the magnitude of a vector
+   */
+  public static double computeVectorMagnitude(Map<String, Integer> vector) {
+    double magnitude = 0;
+    for (Integer axisDistance : vector.values()) {
+      magnitude = axisDistance * axisDistance;
+    }
+    return Math.sqrt(magnitude);
+  }
 }

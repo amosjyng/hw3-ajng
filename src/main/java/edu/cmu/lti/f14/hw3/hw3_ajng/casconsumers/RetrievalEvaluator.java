@@ -177,17 +177,6 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
   }
 
   /**
-   * Return the magnitude of a vector
-   */
-  private double computeVectorMagnitude(Map<String, Integer> vector) {
-    double magnitude = 0;
-    for (Integer axisDistance : vector.values()) {
-      magnitude = axisDistance * axisDistance;
-    }
-    return Math.sqrt(magnitude);
-  }
-
-  /**
    * 
    * @return cosine_similarity
    */
@@ -200,7 +189,8 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
         cosine_similarity += queryVector.get(word) * docVector.get(word);
       }
     }
-    cosine_similarity /= computeVectorMagnitude(queryVector) * computeVectorMagnitude(docVector);
+    cosine_similarity /= Utils.computeVectorMagnitude(queryVector)
+            * Utils.computeVectorMagnitude(docVector);
 
     return cosine_similarity;
   }
